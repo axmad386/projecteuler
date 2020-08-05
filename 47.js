@@ -1,18 +1,5 @@
-console.log('start');
-let tri = 0
 let prime = []
-nextPrime()
-let divider = 0
-for (let n = 1; true; n++) {
-    tri += n
-    divider = numDivider(tri)
-    if (divider >= 500) {
-        console.log(tri,
-            'divider:' + divider);
-        break
-    }
-}
-function numDivider(num) {
+function primeFactor(num) {
     let factors = []
     for (let i = 0; num > 1; false) {
         let p = prime[i] || nextPrime()
@@ -34,11 +21,8 @@ function numDivider(num) {
             pangkat[index] = 1
         }
     })
-    let divider = 1
-    pangkat.map(p => {
-        divider *= (p + 1)
-    })
-    return divider
+    return factors.filter((x, i) => factors.indexOf(x) == i)
+
 }
 function nextPrime() {
     for (let n = (prime[prime.length - 1] + 1) || 2; true; n++) {
@@ -54,4 +38,14 @@ function nextPrime() {
         }
     }
 }
-console.log('finish');
+const target = 4
+for (n = 1; true; n++) {
+    let pf = []
+    for (x = 0; x < target; x++) {
+        pf.push(primeFactor(n + x))
+    }
+    if (pf.filter(x => x.length == target).length == target) {
+        console.log(n, pf);
+        break
+    }
+}
